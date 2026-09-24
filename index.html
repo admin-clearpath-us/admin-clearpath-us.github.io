@@ -1,381 +1,98 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apex Horizon Properties | Investor & Builder</title>
-    <script src="https://jsdelivr.net"></script>
-    <style>
-        :root {
-            --primary: #0f172a;
-            --secondary: #1e293b;
-            --accent: #b45309;
-            --accent-hover: #92400e;
-            --text-light: #f8fafc;
-            --text-dark: #334155;
-            --bg-light: #f1f5f9;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
-
-        header {
-            background-color: var(--primary);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.25rem 2rem;
-        }
-
-        .logo {
-            color: var(--text-light);
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: -0.025em;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logo span {
-            color: var(--accent);
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        nav a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.2s;
-        }
-
-        nav a:hover {
-            color: var(--accent);
-        }
-
-        .hero {
-            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), 
-                        url('https://unsplash.com') no-repeat center center/cover;
-            height: 85vh;
-            display: flex;
-            align-items: center;
-            color: var(--text-light);
-            padding: 0 2rem;
-            margin-top: 4rem;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.05em;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: #cbd5e1;
-            margin-bottom: 2.5rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--text-light);
-            padding: 0.875rem 2rem;
-            border-radius: 0.375rem;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background-color 0.2s;
-        }
-
-        .btn:hover {
-            background-color: var(--accent-hover);
-        }
-
-        .section {
-            padding: 6rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.25rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 4px;
-            background-color: var(--accent);
-            margin: 0.75rem auto 0;
-            border-radius: 2px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1-fr));
-            gap: 2rem;
-            margin-bottom: 5rem;
-        }
-
-        .stat-card {
-            background: white;
-            padding: 2.5rem 1.5rem;
-            border-radius: 0.5rem;
-            text-align: center;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-        }
-
-        .stat-card i {
-            color: var(--accent);
-            margin-bottom: 1rem;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-size: 0.95rem;
-            color: #64748b;
-            font-weight: 500;
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1-fr));
-            gap: 2.5rem;
-        }
-
-        .portfolio-card {
-            background: white;
-            border-radius: 0.5rem;
-            overflow: hidden;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s;
-        }
-
-        .portfolio-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .portfolio-img {
-            height: 240px;
-            background-size: center;
-            background-position: center;
-            background-repeat: no-repeat;
-            position: relative;
-        }
-
-        .state-badge {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            background-color: var(--primary);
-            color: var(--text-light);
-            padding: 0.25rem 0.75rem;
-            border-radius: 0.25rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .portfolio-content {
-            padding: 1.5rem;
-        }
-
-        .portfolio-tag {
-            color: var(--accent);
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-            letter-spacing: 0.05em;
-        }
-
-        .portfolio-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 0.75rem;
-        }
-
-        .portfolio-desc {
-            font-size: 0.95rem;
-            color: #64748b;
-        }
-
-        .nnn-expansion {
-            background-color: var(--secondary);
-            color: var(--text-light);
-        }
-
-        .nnn-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 6rem 2rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        @media (max-width: 768px) {
-            .nnn-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            .hero h1 {
-                font-size: 2.25rem;
-            }
-            nav ul {
-                display: none;
-            }
-        }
-
-        .nnn-title {
-            font-size: 2.25rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-
-        .nnn-title span {
-            color: #f59e0b;
-        }
-
-        .nnn-text {
-            color: #cbd5e1;
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-        }
-
-        .nnn-criteria {
-            list-style: none;
-        }
-
-        .nnn-criteria li {
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: #e2e8f0;
-        }
-
-        .nnn-criteria i {
-            color: #f59e0b;
-            flex-shrink: 0;
-        }
-
-        .contact-form {
-            background: white;
-            padding: 3rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            font-size: 0.9rem;
-            color: var(--primary);
-        }
-
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #cbd5e1;
-            border-radius: 0.375rem;
-            font-size: 1rem;
-            color: var(--primary);
-        }
-
-        .form-group input:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent);
-        }
-
-        footer {
-            background-color: var(--primary);
-            color: #94a3b8;
-            padding: 3rem 2rem;
-            text-align: center;
-            font-size: 0.9rem;
-            border-top: 1px solid var(--secondary);
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="ClearPATH US property portfolio across Illinois, Texas, Arizona, and Michigan.">
+  <title>ClearPATH US | Property Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-    <header>
-        <div class="nav-container">
-            <div class="logo">
-                <i data-lucide="building-2"></i>APEX <span>HORIZON</span>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#portfolio">Current Holdings</a></li>
-                    <li><a href="#expansion">NNN Expansion</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+<header class="site-header">
+  <div class="container nav">
+    <a class="logo" href="index.html"><span class="logo-mark">C</span><span>ClearPATH US</span></a>
+    <nav class="nav-links">
+      <a href="#portfolio">Properties</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn" href="#contact">Contact ClearPATH</a>
+  </div>
+</header>
+<main>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">ClearPATH US Property Portfolio</span>
+        <h1>Residential investment properties, presented clearly.</h1>
+        <p>ClearPATH US owns and manages a growing portfolio of residential properties across Illinois, Texas, Arizona, and Michigan. This site is designed as a clean public-facing portfolio, with factual property information added only when verified.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#portfolio">View properties</a>
+          <a class="btn secondary" href="#contact">Get in touch</a>
         </div>
-    </header>
-
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Building & Investing in Institutional Quality Real Estate</h1>
-            <p>A diversified portfolio spanning Mixed-Use Commercial, Multi-Family Developments, and Luxury Single-Family Residential across premier high-growth US markets.</p>
-            <a href="#contact" class="btn">Partner With Us</a>
+      </div>
+      <aside class="hero-card">
+        <h3>Portfolio at a glance</h3>
+        <p>Only confirmed information supplied by ClearPATH US is shown. Unknown property details remain intentionally blank until verified.</p>
+        <div class="stat-grid">
+          <div class="stat"><strong>8</strong><span>Property locations</span></div>
+          <div class="stat"><strong>4</strong><span>States</span></div>
+          <div class="stat"><strong>1</strong><span>ClearPATH portfolio</span></div>
+          <div class="stat"><strong>0</strong><span>Invented details</span></div>
         </div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="portfolio">
+    <div class="container">
+      <div class="section-head">
+        <div><span class="eyebrow">Portfolio</span><h2>Our properties</h2></div>
+        <p>Property pages currently show addresses and location only. Photos, unit counts, rents, availability, and other details can be added after they are confirmed.</p>
+      </div>
+      <div class="property-grid">
+        <article class="property-card"><div class="property-visual">Property photo placeholder</div><div class="body"><div class="tags"><span class="tag">Flossmoor, IL</span></div><h3>1030 Sterling Ave</h3><p>Flossmoor, Illinois</p><a class="card-link" href="properties/1030-sterling-ave.html">View property →</a></div></article>
+        <article class="property-card"><div class="property-visual">Property photo placeholder</div><div class="body"><div class="tags"><span class="tag">Flossmoor, IL</span></div><h3>1036 Sterling Ave</h3><p>Flossmoor, Illinois</p><a class="card-link" href="properties/1036-sterling-ave.html">View property →</a></div></article>
+        <article class="property-card"><div class="property-visual">Property photo placeholder</div><div class="body"><div class="tags"><span class="tag">Fort Worth, TX</span></div><h3>9904–9906 Plainfield Dr</h3><p>Fort Worth, Texas</p><a class="card-link" href="properties/9904-9906-plainfield-dr.html">View property →</a></div></article>
+        <article class="property-card"><div class="property-visual">Property photo placeholder</div><div class="body"><div class="tags"><span class="tag">Fort Worth, TX</span></div><h3>6417–6419 Westcreek Dr</h3><p>Fort Worth, Texas</p><a class="card-link" href="properties/6417-6419-westcreek-dr.html">View property →</a></div></article>
+        <article class="property-card"><div class="property-visual">Property photo placeholder</div><div class="body"><div class="tags"><span class="tag">Chandler, AZ</span></div><h3>197 E Gemini Place</h3><p>Chandler, Arizona 85249</p><a class="card-link" href="properties/197-e-gemini-place.html">View property →</a></div></article>
+        <article class="property-card"><div class="property-visual">Property photo placeholder</div><div class="body"><div class="tags"><span class="tag">Rockford, IL</span></div><h3>1136 &amp; 1140 N Church Street</h3><p>Rockford, Illinois</p><a class="card-link" href="properties/1136-1140-n-church-st.html">View property →</a></div></article>
+        <article class="property-card"><div class="property-visual">Property photo placeholder</div><div class="body"><div class="tags"><span class="tag">Jackson, MI</span></div><h3>1803 MLK Dr</h3><p>Jackson, Michigan</p><a class="card-link" href="properties/1803-mlk-dr.html">View property →</a></div></article>
+        <article class="property-card"><div class="property-visual">Property photo placeholder</div><div class="body"><div class="tags"><span class="tag">Jackson, MI</span></div><h3>227–229 Mason Dr</h3><p>Jackson, Michigan</p><a class="card-link" href="properties/227-229-mason-dr.html">View property →</a></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container split">
+      <div class="panel">
+        <span class="eyebrow">About</span>
+        <h3>About ClearPATH US</h3>
+        <p>ClearPATH US is presented here as the company associated with this residential property portfolio. A fuller company description, ownership story, operating approach, service area, and investment philosophy have not yet been provided and are therefore not stated as facts.</p>
+      </div>
+      <div class="panel">
+        <span class="eyebrow">Transparency</span>
+        <h3>No assumptions</h3>
+        <p>This site intentionally does not invent property details. The following information is currently missing and should be supplied before publication if you want it shown:</p>
+        <ul>
+          <li>Property photos</li><li>Unit counts and layouts</li><li>Bed / bath details</li><li>Rent and availability</li><li>Amenities and renovations</li><li>Contact phone and email</li><li>Legal entity / ownership disclosure, if desired</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="panel">
+        <span class="eyebrow">Contact</span>
+        <h3>Contact ClearPATH US</h3>
+        <p>Website: <strong>clearpath.us.com</strong></p>
+        <div class="notice">Contact email and phone number were not provided. Add verified contact details here before publishing if you want visitors to reach you directly.</div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="footer"><div class="container footer-grid"><div>© <span data-year></span> ClearPATH US</div><div>clearpath.us.com</div></div></footer>
+<script src="script.js"></script>
+</body>
+</html>
